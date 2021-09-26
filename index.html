@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeGuía</title>
+    <style>
+        body {
+            background-color: rgb(250, 231, 195);
+
+        }
+
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 60px;
+
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 50vh;
+
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        li {
+            font-size: 20px;
+        }
+
+        .imagen {
+            height: 200px;
+        }
+
+        .lists {
+
+            width: 80vw;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            padding-top: 20px;
+            flex-wrap: nowrap;
+            text-align: center;
+
+
+        }
+
+        .columna {
+            margin: 0 auto;
+            width: 50vh;
+            width: 300px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(158, 158, 158, 0.109);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            color: rgb(22, 22, 22);
+        }
+
+        .lista {
+            list-style: none;
+            padding-right: 30px;
+            text-align: center;
+        }
+
+
+
+        .biglista {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img class="logo" src="./assets/pokemon-logo-png-1428.png">
+        <h1>PokeGuía</h1>
+        <div>
+            <label>Nombre</label>
+            <input v-model="pokemon.name" v-on:keyup.enter="buscar" />
+            <button @click="buscar">Buscar</button>
+        </div>
+        <div>
+            <img class="imagen" :src="pokeFoto" />
+            <img class="imagen" :src="pokeShiny" />
+        </div>
+        <div class="container">
+            <div class="lists">
+                <div class="columna">
+                    <h2>Movimientos</h2>
+                    <ol class="lista">
+                        <li v-for="(movimiento, index) in movimientos" :key="index" v-text="movimiento.move.name"></li>
+                    </ol>
+                </div>
+                <div class="columna">
+                    <h2>Habilidades</h2>
+                    <ol class="lista">
+                        <li v-for="(habilidad, index) in habilidades" :key="index" v-text="habilidad.ability.name"></li>
+                    </ol>
+                </div>
+                <div class="columna">
+                    <h2>Tipos</h2>
+                    <div>
+                        <ol class="lista">
+                            <li v-for="(tipo, index) in tipos" :key="index" v-text="tipo.type.name"></li>
+
+                        </ol>
+
+                    </div>
+
+                </div>
+                <div class="columna">
+                    <h2>Stats</h2>
+                    <div class="biglista">
+                        <ol class="lista">
+                            <li v-for="(estadistica, index) in estadisticas" :key="index"
+                                v-text="estadistica.stat.name">
+                            </li>
+                        </ol>
+                        <ol class="lista">
+                            <li v-for="(estadistica, index) in estadisticas" :key="index"
+                                v-text="estadistica.base_stat">
+                            </li>
+                        </ol>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js"></script>
+</body>
+
+</html>
